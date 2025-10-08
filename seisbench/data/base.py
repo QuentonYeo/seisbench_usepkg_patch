@@ -2319,8 +2319,8 @@ class BenchmarkDataset(WaveformDataset, ABC):
         self.path.mkdir(parents=True, exist_ok=True)
 
         remote_path = self._remote_path()
-        remote_metadata_path = os.path.join(remote_path, f"metadata{chunk}.csv")
-        remote_waveforms_path = os.path.join(remote_path, f"waveforms{chunk}.hdf5")
+        remote_metadata_path = urljoin(remote_path + "/", f"metadata{chunk}.csv")
+        remote_waveforms_path = urljoin(remote_path + "/", f"waveforms{chunk}.hdf5")
 
         seisbench.util.download_http(
             remote_metadata_path, metadata_path, desc="Downloading metadata"
